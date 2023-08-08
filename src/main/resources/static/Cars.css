@@ -1,0 +1,145 @@
+body {
+    background-image: url("background-image.jpg");
+    background-size: cover;
+}
+
+.navbar {
+    background-color: #15133C;
+    display: flex;
+    height: 85px;
+    align-items: center;
+}
+
+.navbar-text {
+    font-size: 42px;
+    color: #EEEEEE;
+    font-family: 'Abel', sans-serif;
+    margin-top: 0px;
+}
+
+.navbar-text:hover {
+    font-size: 42px;
+    color: #EEEEEE;
+    font-family: 'Abel', sans-serif;
+    text-decoration: none;
+}
+
+.addCar-link {
+    font-size: 22px;
+    font-family: 'Abel', sans-serif;
+    color: #EEEEEE;
+}
+
+.addCar-link:hover {
+    border: solid #15133C;
+    border-width: 0.5px;
+    border-radius: 2.7px;
+    font-size: 20px;
+    background-color: #F1EEE9;
+    color: #15133C;
+    font-family: 'Abel', sans-serif;
+}
+
+.car-table {
+    margin-top: 30px;
+    font-family: 'Saira Condensed', sans-serif;
+}
+
+.table-items {
+    font-family: 'Saira Condensed', sans-serif;
+    text-align: center;
+    background-color: rgba(241, 235, 243, 0.952);
+    color: black;
+    font-weight: bold;
+}
+
+.table-head {
+    text-align: center;
+    background-color: #EEEEEE;
+    color: #15133C;
+    font-size: 18px;
+    font-family: 'Saira Condensed', sans-serif;
+}
+
+.action-button {
+    font-weight: bolder;
+    background-color: #15133C;
+    color: #EEEEEE;
+    font-family: 'Saira Condensed', sans-serif;
+    height: max-content;
+    width: 78px;
+    width: max-content;
+}
+
+.action-button:hover {
+    font-weight: bolder;
+    background-color: #F1EEE9;
+    color: #15133C;
+    border: solid #15133C;
+    border-width: 0.5px;
+    border-radius: 2.7px;
+    font-family: 'Saira Condensed', sans-serif;
+}
+
+.view-button {
+    font-weight: bolder;
+    background-color: rgba(241, 235, 243, 0.952);
+    color: #454545;
+    font-family: 'Saira Condensed', sans-serif;
+}
+
+.view-button:hover {
+    font-weight: bolder;
+    background-color: rgba(241, 235, 243, 0.952);
+    color: #272468;
+    font-family: 'Saira Condensed', sans-serif;
+
+}
+
+.delete-button {
+    background-color: #D71313;
+}
+
+.delete-button:hover {
+    background-color: #F1EEE9;
+    color: #D71313;
+    border: solid #D71313;
+    border-width: 0.5px;
+    border-radius: 2.7px;
+}
+
+.modal {
+    font-family: 'Saira Condensed', sans-serif;
+    text-align: center;
+}
+
+.modal label {
+    font-family: 'Abel', sans-serif;
+    font-weight: bolder;
+    font-size: 20px;
+    color: #15133C;
+}
+
+.modal input {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 6px;
+}
+
+.modal-title {
+    color: #D71313;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 27px;
+    font-family: 'Abel', sans-serif;
+}
+
+.close-button {
+    align-items: center;
+    background-color: #454545;
+    color: #EEEEEE;
+    font-size: 15px;
+    height: 35px;
+    width: 75px;
+}

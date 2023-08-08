@@ -1,0 +1,167 @@
+package com.carfactory.carfactory.service.impl;
+
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.carfactory.carfactory.entity.Car;
+import com.carfactory.carfactory.entity.CarRich;
+import com.carfactory.carfactory.repository.Repository;
+import com.carfactory.carfactory.service.CarService;
+
+@Service
+public class CarServiceImpl implements CarService {
+
+    private CarRich rCar;
+    Repository repository = new Repository();
+    private List<CarRich> allCars;
+    String query;
+
+    @Override
+    public List<CarRich> getAllCar() {
+        allCars = new ArrayList<>();
+        query = "uspGetCar";
+
+        try {
+            Connection conn = repository.getConnection();
+            CallableStatement cb = conn.prepareCall(query);
+            // cb.setInt(1, 1);
+            ResultSet rs = cb.executeQuery();
+            while (rs.next()) {
+                rCar = new CarRich();
+                // car = new Car(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
+                // rs.getLong(5), rs.getString(6),
+                // rs.getString(7), rs.getBoolean(8), rs.getDate(9));
+
+                rCar.setCarID(rs.getInt("CarID"));
+                rCar.setColorID(rs.getInt("ColorID"));
+                rCar.setBrandID(rs.getInt("BrandID"));
+                rCar.setModel(rs.getString("Model"));
+                rCar.setPrice(rs.getLong("Price"));
+                rCar.setGearType(rs.getString("GearType"));
+                rCar.setFuelType(rs.getString("FuelType"));
+                rCar.setIsRefurbished(rs.getBoolean("IsRefurbished"));
+                rCar.setReleaseDate(rs.getDate("ReleaseDate"));
+                rCar.setBrand(rs.getString("Brand"));
+                rCar.setColor(rs.getString("Color"));
+
+                allCars.add(rCar);
+
+            }
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+        }
+        return allCars;
+    }
+
+    @Override
+    public Car addCar(Car car) {
+
+        query = "{call uspInsertCar(?,?,?,?,?,?,?,?)}";
+        try {
+            Connection conn = repository.getConnection();
+            CallableStatement cb = conn.prepareCall(query);
+            cb.setInt("ColorID", car.getColorID());
+            cb.setInt("BrandID", car.getBrandID());
+            cb.setString("Model", car.getModel());
+            cb.setLong("Price", car.getPrice());
+            cb.setString("GearType", car.getGearType());
+            cb.setString("FuelType", car.getFuelType());
+            cb.setBoolean("IsRefurbished", car.getIsRefurbished());
+            java.sql.Date sqlDate = new java.sql.Date(car.getReleaseDate().getTime());
+            cb.setDate("ReleaseDate", (sqlDate));
+            Boolean rs = cb.execute();
+            System.out.println("Successfully added");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return car;
+    }
+
+    @Override
+    public CarRich getCarByID(int id) {
+        rCar = new CarRich();
+        query = "{call uspGetCarByID(?)}";
+
+        try {
+            Connection conn = repository.getConnection();
+            CallableStatement cb = conn.prepareCall(query);
+            cb.setInt(("CarID"), id);
+            ResultSet rs = cb.executeQuery();
+            rs.next();
+            rCar.setCarID(rs.getInt("CarID"));
+            rCar.setColorID(rs.getInt("ColorID"));
+            rCar.setBrandID(rs.getInt("BrandID"));
+            rCar.setModel(rs.getString("Model"));
+            rCar.setPrice(rs.getLong("Price"));
+            rCar.setGearType(rs.getString("GearType"));
+            rCar.setFuelType(rs.getString("FuelType"));
+            rCar.setIsRefurbished(rs.getBoolean("IsRefurbished"));
+            rCar.setReleaseDate(rs.getDate("ReleaseDate"));
+            rCar.setBrand(rs.getString("Brand"));
+            rCar.setColor(rs.getString("Color"));
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return rCar;
+
+    }
+
+    @Override
+    public Car updateCar(Car car) {
+        query = "{call uspUpdateCar(?,?,?,?,?,?,?,?,?)}";
+        try {
+            Connection conn = repository.getConnection();
+            CallableStatement cb = conn.prepareCall(query);
+            cb.setInt("CarID", car.getCarID());
+            cb.setInt("ColorID", car.getColorID());
+            cb.setInt("BrandID", car.getBrandID());
+            cb.setString("Model", car.getModel());
+            cb.setLong("Price", car.getPrice());
+            cb.setString("GearType", car.getGearType());
+            cb.setString("FuelType", car.getFuelType());
+            cb.setBoolean("IsRefurbished", car.getIsRefurbished());
+            java.sql.Date sqlDate = new java.sql.Date(car.getReleaseDate().getTime());
+            cb.setDate("ReleaseDate", (sqlDate));
+            Boolean rs = cb.execute();
+
+            System.out.println("Succesfully Updated");
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return car;
+    }
+
+    @Override
+    public void deleteCarByID(int id) {
+        query = "{call uspDeleteCarByID(?)}";
+        try {
+            Connection conn = repository.getConnection();
+            CallableStatement cb = conn.prepareCall(query);
+            cb.setInt("CarID", id);
+            Boolean rs = cb.execute();
+            System.out.println("Succesfully Deleted");
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Override
+    public List<CarRich> searchCar(Car car) {
+        return allCars;
+       
+
+
+
+    }
+
+}
