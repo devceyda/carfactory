@@ -1,6 +1,7 @@
 package com.carfactory.carfactory.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.carfactory.carfactory.entity.Brand;
 import com.carfactory.carfactory.entity.Car;
@@ -34,13 +34,23 @@ public class FactoryController {
         this.carService = carService;
     }
 
+    Car car = new CarRich(null, null, null, null, null, null, null, null, null, null, null);
+
+    @RequestMapping(value = "/Cars", method = RequestMethod.POST)
+    public String searchCar(@ModelAttribute("Car") Car car) {
+        this.car = car;
+        return "redirect:/Cars";
+    }
+
     @GetMapping("/Cars")
     public String listCars(Model model) {
-        model.addAttribute("Cars", carService.getAllCar());
-        CarRich car = new CarRich();
-        model.addAttribute("searchedCar", car);
-        System.out.println(car.getPrice());
-        System.out.println(car.getBrandID());
+        // model.addAttribute("Cars", carService.getAllCar());
+        // CarRich car = new CarRich();
+        // model.addAttribute("Car", car);
+        // CarRich car = new CarRich();
+        model.addAttribute("Cars", carService.searchCar(car));
+        this.car = new CarRich();
+        // System.out.println(car.getPrice());
         return "Cars";
     }
 
@@ -104,11 +114,5 @@ public class FactoryController {
     // }
 
     // }
-
-    @PostMapping( "/Cars" )
-    public String SearchCar(@ModelAttribute("searchedCar") Car searchedCar) {
-        System.out.println(searchedCar.getBrandID());
-        return "redirect:/Cars";
-    }
 
 }

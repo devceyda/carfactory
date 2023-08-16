@@ -12,20 +12,20 @@ import java.util.Locale;
 public class Car {
 
     private Integer CarID;
-    private int ColorID;
-    private int BrandID;
+    private Integer ColorID;
+    private Integer BrandID;
     private String Model;
     private Long Price;
     private String GearType;
     private String FuelType;
-    private boolean IsRefurbished;
+    private Boolean IsRefurbished;
     private Date ReleaseDate;
 
     public Car() {
     }
 
-    public Car(int carID, int colorID, int brandID, String model, long price, String gearType, String fuelType,
-            boolean isRefurbished, Date releaseDate) {
+    public Car(Integer carID, Integer colorID, Integer brandID, String model, Long price, String gearType, String fuelType,
+            Boolean isRefurbished, Date releaseDate) {
         CarID = carID;
         ColorID = colorID;
         BrandID = brandID;
@@ -37,27 +37,27 @@ public class Car {
         ReleaseDate = releaseDate;
     }
 
-    public int getCarID() {
+    public Integer getCarID() {
         return CarID;
     }
 
-    public void setCarID(int carID) {
+    public void setCarID(Integer carID) {
         CarID = carID;
     }
 
-    public int getColorID() {
+    public Integer getColorID() {
         return ColorID;
     }
 
-    public void setColorID(int colorID) {
+    public void setColorID(Integer colorID) {
         ColorID = colorID;
     }
 
-    public int getBrandID() {
+    public Integer getBrandID() {
         return BrandID;
     }
 
-    public void setBrandID(int brandID) {
+    public void setBrandID(Integer brandID) {
         BrandID = brandID;
     }
 
@@ -83,7 +83,7 @@ public class Car {
         return p + "  TL";
     }
 
-    public void setPrice(long price) {
+    public void setPrice(Long price) {
         Price = price;
     }
 
@@ -103,11 +103,11 @@ public class Car {
         FuelType = fuelType;
     }
 
-    public boolean getIsRefurbished() {
+    public Boolean getIsRefurbished() {
         return IsRefurbished;
     }
 
-    public void setIsRefurbished(boolean isRefurbished) {
+    public void setIsRefurbished(Boolean isRefurbished) {
         IsRefurbished = isRefurbished;
     }
 

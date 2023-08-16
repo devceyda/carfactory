@@ -66,9 +66,6 @@ body {
     background-color: #15133C;
     color: #EEEEEE;
     font-family: 'Saira Condensed', sans-serif;
-    height: max-content;
-    width: 78px;
-    width: max-content;
 }
 
 .action-button:hover {
@@ -81,19 +78,24 @@ body {
     font-family: 'Saira Condensed', sans-serif;
 }
 
-.view-button {
+.search-button {
     font-weight: bolder;
-    background-color: rgba(241, 235, 243, 0.952);
-    color: #454545;
+    background-color:#75C2F6;
+    color: black;
     font-family: 'Saira Condensed', sans-serif;
+    margin-bottom: 5px;
 }
 
-.view-button:hover {
+.search-button:hover {
     font-weight: bolder;
     background-color: rgba(241, 235, 243, 0.952);
     color: #272468;
     font-family: 'Saira Condensed', sans-serif;
 
+}
+
+.view-button{
+    color:#75C2F6;
 }
 
 .delete-button {
@@ -138,8 +140,11 @@ body {
 .close-button {
     align-items: center;
     background-color: #454545;
+    font-weight: bold;
+    float: right;
     color: #EEEEEE;
     font-size: 15px;
     height: 35px;
     width: 75px;
 }
+

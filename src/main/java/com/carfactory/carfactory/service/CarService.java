@@ -18,4 +18,6 @@ public interface CarService {
     void deleteCarByID(int id);
 
     List<CarRich> searchCar(Car car);
+
+   
 }

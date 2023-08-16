@@ -157,10 +157,82 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<CarRich> searchCar(Car car) {
+        allCars = new ArrayList<>();
+        query = "{call uspSearchCar(?,?,?,?,?,?,?,?,?)}";
+        try {
+            Connection conn = repository.getConnection();
+            CallableStatement cb = conn.prepareCall(query);
+            cb.setString("CarID", null);
+            if (car.getColorID() == null) {
+                cb.setString("ColorID", null);
+            } else {
+                cb.setInt("ColorID", car.getColorID());
+            }
+            if (car.getBrandID() == null) {
+                cb.setString("BrandID", null);
+            } else {
+                cb.setInt("BrandID", car.getBrandID());
+            }
+            if (car.getModel() == "") {
+                cb.setString("Model", null);
+            } else {
+                cb.setString("Model", car.getModel());
+            }
+            if (car.getPrice() == null) {
+                cb.setString("Price", null);
+            } else {
+                cb.setLong("Price", car.getPrice());
+            }
+            if (car.getGearType() == "") {
+                cb.setString("GearType", null);
+            } else {
+                cb.setString("GearType", car.getGearType());
+            }
+            if (car.getFuelType() == "") {
+                cb.setString("FuelType", null);
+            } else {
+                cb.setString("FuelType", car.getFuelType());
+            }
+            if (car.getIsRefurbished() == null) {
+                cb.setString("IsRefurbished", null);
+            } else {
+                cb.setBoolean("IsRefurbished", car.getIsRefurbished());
+            }
+            if (car.getReleaseDate() == null) {
+                cb.setString("ReleaseDateStart", null);
+            } else {
+                java.sql.Date sqlDate = new java.sql.Date(car.getReleaseDate().getTime());
+                cb.setDate("ReleaseDateStart", (sqlDate));
+            }
+
+            ResultSet rs = cb.executeQuery();
+
+
+            while (rs.next()) {
+                rCar = new CarRich();
+                // car = new Car(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
+                // rs.getLong(5), rs.getString(6),
+                // rs.getString(7), rs.getBoolean(8), rs.getDate(9));
+
+                rCar.setCarID(rs.getInt("CarID"));
+                rCar.setColorID(rs.getInt("ColorID"));
+                rCar.setBrandID(rs.getInt("BrandID"));
+                rCar.setModel(rs.getString("Model"));
+                rCar.setPrice(rs.getLong("Price"));
+                rCar.setGearType(rs.getString("GearType"));
+                rCar.setFuelType(rs.getString("FuelType"));
+                rCar.setIsRefurbished(rs.getBoolean("IsRefurbished"));
+                rCar.setReleaseDate(rs.getDate("ReleaseDate"));
+                rCar.setBrand(rs.getString("Brand"));
+                rCar.setColor(rs.getString("Color"));
+
+                allCars.add(rCar);
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return allCars;
-       
-
-
 
     }
 

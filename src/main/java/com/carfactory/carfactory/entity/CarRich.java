@@ -7,8 +7,8 @@ public class CarRich extends Car {
     private String Color;
     private String Brand;
 
-    public CarRich(int carID, int colorID, int brandID, String model, long price, String gearType, String fuelType,
-            boolean isRefurbished, Date releaseDate, String color, String brand) {
+    public CarRich(Integer carID, Integer  colorID, Integer  brandID, String model, Long price, String gearType, String fuelType,
+            Boolean isRefurbished, Date releaseDate, String color, String brand) {
         super(carID, colorID, brandID, model, price, gearType, fuelType, isRefurbished, releaseDate);
         this.Color = color;
         this.Brand = brand;

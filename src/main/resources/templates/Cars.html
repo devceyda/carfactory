@@ -48,19 +48,19 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-center" id="modalHeader" value=""></h5>
+                    <h5 class="modal-title text-center" id="modalHeader" value=""> Search Car</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form th:action=" @{/Cars}" th:object ="${searchedCar}" method="POST">
+                    <form id="filter-form" action="http://localhost:8080/Cars" method="POST" name="filter-form">
                         <div class="form-group form-inline">
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="Brand" class="col-xs-4 form-control-label">Brand:</label>
-                                    <select class="col-xs-8" id="searchByBrand" th:field="*{BrandID}" name="searchByBrand">
-                                        <option th:value="0" text="Please Select"></option>
+                                    <select class="col-xs-8" id="searchByBrand" name="BrandID">
+                                        <option text="Please Select"></option>
                                         <option th:each="brand: ${brands}" th:text="${brand.Brand}"
                                             th:value="${brand.BrandID}">
                                         </option>
@@ -72,7 +72,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="Model" class="col-xs-4 form-control-label">Model:</label>
-                                    <input type="text" class="col-xs-8" id="searchByModel" th:name="searchByModel" />
+                                    <input type="text" class="col-xs-8" id="searchByModel" name="Model" value="" />
                                 </div>
                             </div>
                         </div>
@@ -80,10 +80,10 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="Color" class="col-xs-4 form-control-label">Color:</label>
-                                    <select class="col-xs-8" >
-                                        <option th:value="0" text="Please Select"></option>
-                                        <option th:each="color: ${colors}" th:text="${color.Color}" id="searchByColor"
-                                            th:name="searchByColor">
+                                    <select class="col-xs-8" id="searchByColor" name="ColorID">
+                                        <option text="Please Select"></option>
+                                        <option th:each="color: ${colors}" th:text="${color.Color}"
+                                            th:value="${color.ColorID}">
                                         </option>
                                     </select>
                                 </div>
@@ -93,7 +93,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="Price" class="col-xs-4 form-control-label">Price:</label>
-                                    <input th:field="*{Price}" type="text" class="col-xs-8" id="searchByPrice" name="searchByPrice" />
+                                    <input type="number" class="col-xs-8" id="searchByPrice" name="Price" />
                                 </div>
                             </div>
                         </div>
@@ -101,9 +101,9 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="gearType" class="col-xs-4 form-control-label">Gear Type:</label>
-                                    <select class="col-xs-8" id="searchByGearType" name="searchByGearType">
+                                    <select class="col-xs-8" id="searchByGearType" name="GearType">
                                         <!--   <option value="0">select operator</option>-->
-                                        <option th:value="0" text="Please Select"></option>
+                                        <option text="Please Select"></option>
                                         <option th:value="O" th:text="Otomatic"></option>
                                         <option th:value="M" th:text="Manuel"></option>
                                     </select>
@@ -114,8 +114,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <label for="fuelType" class="col-xs-4 form-control-label">Fuel Type:</label>
-                                    <select class="col-xs-8" id="searchByFuelType" name="searchByFuelType">
-                                        <option th:value="0" text="Please Select"></option>
+                                    <select class="col-xs-8" id="searchByFuelType" name="FuelType">
+                                        <option text="Please Select"></option>
                                         <option th:value="F" th:text="Fuel"></option>
                                         <option th:value="D" th:text="Diesel"></option>
                                         <option th:value="H" th:text="Hybrid"></option>
@@ -129,7 +129,7 @@
                                 <div class="col-md-12">
                                     <label for="ReleaseDate" class="col-xs-4 form-control-label">Release Date:</label>
                                     <input type="date" class="form-control form-control-lg col-xs-8"
-                                        style="margin: auto;" id="searchByReleaseDate" name="searchByReleaseDate" />
+                                        style="margin: auto;" id="searchByReleaseDate" name="ReleaseDate" />
                                 </div>
                             </div>
                         </div>
@@ -139,19 +139,19 @@
                                     <label for="IsRefurbished" class="col-xs-4 form-control-label">Car
                                         Refurbished:</label>
                                     <label style="margin-right:10px ;" for="yes">Yes</label>
-                                    <input style="margin-right: 20px;" type="radio" value="1" class="col-xs-8"
-                                        id="searchByIsRefurbished" />
+                                    <input style="margin-right: 20px;" type="radio" value="1" id="searchByIsRefurbished"
+                                        name="IsRefurbished" />
                                     <label style="margin-right:10px " for="no">No</label>
-                                    <input type="radio" value="0" class="col-xs-8" id="searchByIsRefurbished" />
+                                    <input type="radio" value="0" id="searchByIsRefurbished" name="IsRefurbished" />
                                 </div>
                             </div>
                         </div>
-                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary submit-button" data-dismiss="modal"
-                        th:onclick="|window.location.href='/Cars'|">Submit</button>
+
+                    <button type="submit" class="btn btn-primary close-button">Search</button>
                 </div>
+                </form>
             </div>
         </div>
     </div>
@@ -244,7 +244,7 @@
 
     <nav class="navbar navbar-expand-lg  ">
         <!-- Brand -->
-        <a class="navbar navbar-text navbar-brand" th:href="@{/Cars}">CK Factory</a>
+        <a http-equiv="Refresh" class="navbar navbar-text navbar-brand" th:href="@{/Cars}">CK Factory</a>
         <!-- Toggler/collapsibe Button -->
         <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -258,13 +258,12 @@
             </ul>
         </div>
     </nav>
-    <a type="button" class="btn action-button view-button"
-        style="display: flex; align-items: center; text-align: center;" data-toggle="modal" data-target="#MdlSearchCar">
-        Serch Car
-    </a>
+
     <div class="container">
         <input id="HddnCarID" type="hidden" />
-
+        <a type="button" class="btn pull-right search-button" id="search-button" style="margin-left: 7px;"
+            data-toggle="modal" data-target="#MdlSearchCar"><i class="fa-brands fa-searchengin fa-lg"></i>
+        </a>
         <table class="table table-bordered car-table">
             <thead class="table-head">
                 <tr>
@@ -280,7 +279,6 @@
             <tbody class="table-items">
                 <tr th:each="Car: ${Cars}">
                     <td>
-
                         <a type="button" th:onclick="getCar([[${Car}]])" class="view-button"><i
                                 class="fa-solid fa-lg fa-circle-chevron-right"></i>
                             <!-- <th:block>
@@ -303,26 +301,26 @@
                             View Car
                         </a> -->
                     </td>
-
                     <td th:text="${Car.Brand}"></td>
                     <td th:text="${Car.Model}"></td>
                     <td th:text="${Car.Color}"></td>
                     <td th:text="${Car.getFormattedPrice()}"></td>
                     <td th:text="${Car.getFormattedReleaseDate()}"></td>
                     <td>
-                        <a th:href="@{/Cars/update/{id}(id=${Car.CarID})}" class="btn action-button"
-                            style=" text-align:center;">
-                            <i class="fa-solid fa-gear fa-sm" style=" text-align:center;"></i> Update</a>
+                        <a type="button" th:href="@{/Cars/update/{id}(id=${Car.CarID})}" class="btn action-button"
+                            style=" text-align:center; margin-right: 8px;">
+                            <i class="fa-solid fa-gear fa-sm" style=" text-align:center;"></i></a>
 
-                        <a th:href="@{/Cars/{id}(id=${Car.CarID})}" class="btn action-button delete-button"
-                            style="text-align:center;"
+                        <a type="button" th:href="@{/Cars/{id}(id=${Car.CarID})}"
+                            class="btn action-button delete-button" style="text-align:center;"
                             th:data-confirm-delete="|Are you sure you want to delete ${Car.Brand} ${Car.Model}?|"
                             onclick="if (!confirm(this.getAttribute('data-confirm-delete'))) return false">
-                            <i class="fa-solid fa-circle-minus fa-sm" style=" text-align:center;"></i> Delete</a>
+                            <i class="fa-solid fa-trash-can fa-sm" style=" text-align:center;"></i></a>
                     </td>
 
                 </tr>
             </tbody>
+
 
 
         </table>
@@ -330,22 +328,6 @@
     </div>
 
     <script>
-
-        $(document).ready(function () {
-
-            // $('.table .view-button').on('click', function (event) {
-            //     event.preventDefault();
-
-            //     var href = $(this).attr('href');
-            //     $.get(href,function (Car, status) {
-            //         console.log(Car.Brand);
-            //         $("#brand").val(Car.Brand);
-            //     });
-
-            //     $('#MdlCar').modal();
-            // });
-        });
-
         function getCar(car) {
             console.log(car);
             $("#modalTitle").text(car.brand + " " + car.model);
@@ -377,6 +359,69 @@
 
             $('#MdlCar').modal();
         }
+
+        // $('.submit-button').on('click', function () {
+        //     console.log("first entrence successful");
+        //     $.ajax({
+
+        //         type: 'POST',
+        //         url: 'http://localhost:8080/Cars',
+        //         data: function(d) {
+        //             brandID = $('#searchByBrand').val(),
+        //             model = $('#searchByModel').val(),
+        //             colorID = $('#searchByColor').val()
+        //         },
+        //         success: function (searchCar) {
+        //             console.log(data);
+        //             $('#MdlSearchCar #searchByBrand').val(searchCar.BrandID);
+        //             $('#MdlSearchCar #searchByModel').val(searchCar.Model);
+        //             $('#MdlSearchCar #searchByColor').val(searchCar.ColorID);
+        //             $('#MdlSearchCar #searchByPrice').val(searchCar.Price);
+        //             $('#MdlSearchCar #searchByGearType').val(searchCar.GearType);
+        //             $('#MdlSearchCar #searchByFuelType').val(searchCar.FuelType);
+        //             $('#MdlSearchCar #searchByReleaseDate').val(searchCar.ReleaseDate);
+        //             $('#MdlSearchCar #searchByIsRefurbished').val(searchCar.IsRefurbished);
+
+
+        //         },
+        //         error: function(e){
+        //             console.log(data);
+        //         }
+
+        //     });
+
+        // });
+        $('#filter-form').on('submit', function (event) {
+            console.log(form.serialize());
+            var self = this;
+            var form = $(this);
+            var errorMsg = $('#errorMsg');
+
+
+            if (form.data('requestRunning')) {
+                return;
+            }
+
+            form.data('requestRunning', true);
+            event.preventDefault();
+            $.ajax({
+                url: form.attr("action"),
+                type: form.attr("method"),
+                data: form.serialize(),
+                success: function (result) {
+
+                    console.log("ajax working");
+
+
+                },
+                complete: function (e) {
+                    form.data('requestRunning', false);
+                }
+
+            });
+
+        });
+
 
     </script>
 
