@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.carfactory.carfactory.entity.Brand;
 import com.carfactory.carfactory.entity.Car;
@@ -21,12 +24,18 @@ import com.carfactory.carfactory.service.BrandService;
 import com.carfactory.carfactory.service.CarService;
 import com.carfactory.carfactory.service.ColorService;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 @Controller
+
 public class FactoryController {
 
     private BrandService brandService;
     private ColorService colorService;
     private CarService carService;
+
+    private List<CarRich> carList;
 
     public FactoryController(BrandService brandService, ColorService colorService, CarService carService) {
         this.brandService = brandService;
@@ -36,22 +45,33 @@ public class FactoryController {
 
     Car car = new CarRich(null, null, null, null, null, null, null, null, null, null, null);
 
-    @RequestMapping(value = "/Cars", method = RequestMethod.POST)
-    public String searchCar(@ModelAttribute("Car") Car car) {
-        this.car = car;
-        return "redirect:/Cars";
+    @GetMapping("/Cars")
+    public String listCars() {
+        // // model.addAttribute("Cars", carService.getAllCar());
+        // // CarRich car = new CarRich();
+        // // model.addAttribute("Car", car);
+        // // CarRich car = new CarRich();
+        // //model.addAttribute("Cars", carService.searchCar(car));
+        // //this.car = new CarRich();
+        // // System.out.println(car.getPrice());
+        return "Cars";
     }
 
-    @GetMapping("/Cars")
-    public String listCars(Model model) {
-        // model.addAttribute("Cars", carService.getAllCar());
-        // CarRich car = new CarRich();
-        // model.addAttribute("Car", car);
-        // CarRich car = new CarRich();
-        model.addAttribute("Cars", carService.searchCar(car));
+    @RequestMapping(value = "/CarsData", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+    @ResponseBody
+    public List<CarRich> getCarsData() {
+
+        carList = new ArrayList<>();
+        carList = carService.searchCar(car);
         this.car = new CarRich();
-        // System.out.println(car.getPrice());
-        return "Cars";
+        // listCars();
+        return carList;
+    }
+
+    @RequestMapping(value = "/FilterCars", method = RequestMethod.POST)
+    public String filterCars(@ModelAttribute("Car") Car car) {
+        this.car = car;
+        return "/Cars";
     }
 
     @ModelAttribute("colors")
@@ -92,11 +112,20 @@ public class FactoryController {
         return "redirect:/Cars";
     }
 
-    @GetMapping("/Cars/{id}")
-    public String deleteCar(@PathVariable Integer id) {
+    // @GetMapping("/Cars/{id}")
+    // public String deleteCar(@PathVariable Integer id) {
+    //     carService.deleteCarByID(id);
+    //     return "redirect:/Cars";
+    // }
+
+    
+    @RequestMapping(value = "/CarsDelete", method = RequestMethod.POST)
+    public String deleteCarByID(@RequestParam("carID") Integer id) {
         carService.deleteCarByID(id);
         return "redirect:/Cars";
     }
+
+
 
     // @PostMapping("/Cars")
     // public void SearchCar(

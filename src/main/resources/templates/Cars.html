@@ -3,7 +3,9 @@
 
 <head>
     <title>Car Factory</title>
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
@@ -11,13 +13,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.js"></script>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,9 +42,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/Cars.css">
+    <link rel="stylesheet" href="CSS/Cars.css">
+    <script type="text/javascript" th:src="@{JS/Cars.js}"></script>
 
-
+    <style>
+        table.dataTable tbody tr {
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+    </style>
 </head>
 
 
@@ -54,7 +69,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form id="filter-form" action="http://localhost:8080/Cars" method="POST" name="filter-form">
+                    <form id="filter-form" action="/FilterCars" method="POST" name="filter-form">
                         <div class="form-group form-inline">
                             <div class="row">
                                 <div class="col-md-12">
@@ -129,7 +144,7 @@
                                 <div class="col-md-12">
                                     <label for="ReleaseDate" class="col-xs-4 form-control-label">Release Date:</label>
                                     <input type="date" class="form-control form-control-lg col-xs-8"
-                                        style="margin: auto;" id="searchByReleaseDate" name="ReleaseDate" />
+                                        style="margin: auto; " id="searchByReleaseDate" name="ReleaseDate" />
                                 </div>
                             </div>
                         </div>
@@ -264,8 +279,9 @@
         <a type="button" class="btn pull-right search-button" id="search-button" style="margin-left: 7px;"
             data-toggle="modal" data-target="#MdlSearchCar"><i class="fa-brands fa-searchengin fa-lg"></i>
         </a>
-        <table class="table table-bordered car-table">
-            <thead class="table-head">
+        <table class="table table-striped table-bordered table-hover table-responsive text-center table-items "
+            id="carTable">
+            <thead class="table-head ">
                 <tr>
                     <th class="text-center"></th>
                     <th class="text-center">Brand</th>
@@ -276,30 +292,30 @@
                     <th class="text-center">Actions </th>
                 </tr>
             </thead>
-            <tbody class="table-items">
+            <!-- <tbody class="table-items">
                 <tr th:each="Car: ${Cars}">
                     <td>
                         <a type="button" th:onclick="getCar([[${Car}]])" class="view-button"><i
                                 class="fa-solid fa-lg fa-circle-chevron-right"></i>
-                            <!-- <th:block>
+                            <th:block>
                                 <script type="text/javascript" th:inline="javascript">
                                     var Car = [[${ Car }]];
                                     console.log(Car);
                                 // $("#brand").val(Car.brand);
 
                                 </script>
-                            </th:block> -->
+                            </th:block> 
 
                         </a>
-                        <!-- <a th:href="@{/Cars/choosenCar/{id}(id=${Car.CarID})}" type="button"
+                         <a th:href="@{/Cars/choosenCar/{id}(id=${Car.CarID})}" type="button"
                             class="btn action-button view-button">
                             View Car
-                        </a> -->
-                        <!--  <a th:href="@{/Cars/choosenCar/{id}(id=${Car.CarID})}" type="button"
+                        </a> 
+                          <a th:href="@{/Cars/choosenCar/{id}(id=${Car.CarID})}" type="button"
                             class="btn action-button view-button" 
                            data-toggle="modal" data-target="#MdlCar">
                             View Car
-                        </a> -->
+                        </a> 
                     </td>
                     <td th:text="${Car.Brand}"></td>
                     <td th:text="${Car.Model}"></td>
@@ -319,7 +335,7 @@
                     </td>
 
                 </tr>
-            </tbody>
+            </tbody> -->
 
 
 
@@ -328,100 +344,6 @@
     </div>
 
     <script>
-        function getCar(car) {
-            console.log(car);
-            $("#modalTitle").text(car.brand + " " + car.model);
-            $("#brand").val(car.brand);
-            $("#model").val(car.model);
-            $("#color").val(car.color);
-            $("#price").val(car.formattedPrice);
-            if (car.gearType == "M") {
-                $("#gearType").val("Manuel");
-            } else if (car.gearType == "O") {
-                $("#gearType").val("Otomatic");
-            }
-            if (car.fuelType == "H") {
-                $("#fuelType").val("Hybrid");
-            } else if (car.fuelType == "D") {
-                $("#fuelType").val("Diesel");
-            } else if (car.fuelType == "F") {
-                $("#fuelType").val("Fuel");
-            } else if (car.fuelType == "E") {
-                $("#fuelType").val("Electric");
-            }
-            $("#releaseDate").val(car.formattedReleaseDate);
-            if (car.isRefurbished == false) {
-                $("#isRefurbished").val("No");
-            } else if (car.isRefurbished == true) {
-                $("#isRefurbished").val("Yes");
-            }
-            //$("#brand").val(car.find(x => x.carID == 65).brand);
-
-            $('#MdlCar').modal();
-        }
-
-        // $('.submit-button').on('click', function () {
-        //     console.log("first entrence successful");
-        //     $.ajax({
-
-        //         type: 'POST',
-        //         url: 'http://localhost:8080/Cars',
-        //         data: function(d) {
-        //             brandID = $('#searchByBrand').val(),
-        //             model = $('#searchByModel').val(),
-        //             colorID = $('#searchByColor').val()
-        //         },
-        //         success: function (searchCar) {
-        //             console.log(data);
-        //             $('#MdlSearchCar #searchByBrand').val(searchCar.BrandID);
-        //             $('#MdlSearchCar #searchByModel').val(searchCar.Model);
-        //             $('#MdlSearchCar #searchByColor').val(searchCar.ColorID);
-        //             $('#MdlSearchCar #searchByPrice').val(searchCar.Price);
-        //             $('#MdlSearchCar #searchByGearType').val(searchCar.GearType);
-        //             $('#MdlSearchCar #searchByFuelType').val(searchCar.FuelType);
-        //             $('#MdlSearchCar #searchByReleaseDate').val(searchCar.ReleaseDate);
-        //             $('#MdlSearchCar #searchByIsRefurbished').val(searchCar.IsRefurbished);
-
-
-        //         },
-        //         error: function(e){
-        //             console.log(data);
-        //         }
-
-        //     });
-
-        // });
-        $('#filter-form').on('submit', function (event) {
-            console.log(form.serialize());
-            var self = this;
-            var form = $(this);
-            var errorMsg = $('#errorMsg');
-
-
-            if (form.data('requestRunning')) {
-                return;
-            }
-
-            form.data('requestRunning', true);
-            event.preventDefault();
-            $.ajax({
-                url: form.attr("action"),
-                type: form.attr("method"),
-                data: form.serialize(),
-                success: function (result) {
-
-                    console.log("ajax working");
-
-
-                },
-                complete: function (e) {
-                    form.data('requestRunning', false);
-                }
-
-            });
-
-        });
-
 
     </script>
 

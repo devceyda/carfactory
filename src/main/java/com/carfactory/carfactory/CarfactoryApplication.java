@@ -3,7 +3,10 @@ package com.carfactory.carfactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
+
 @SpringBootApplication
+
 public class CarfactoryApplication {
 
 	// static String dbUrl =

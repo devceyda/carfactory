@@ -43,12 +43,15 @@ body {
 .car-table {
     margin-top: 30px;
     font-family: 'Saira Condensed', sans-serif;
+    text-align: center;
 }
+
 
 .table-items {
     font-family: 'Saira Condensed', sans-serif;
     text-align: center;
-    background-color: rgba(241, 235, 243, 0.952);
+    /* background-color: rgba(241, 235, 243, 0.952) ; */
+    opacity: 0.947;
     color: black;
     font-weight: bold;
 }
@@ -56,7 +59,7 @@ body {
 .table-head {
     text-align: center;
     background-color: #EEEEEE;
-    color: #15133C;
+    color: #272468;
     font-size: 18px;
     font-family: 'Saira Condensed', sans-serif;
 }
@@ -80,10 +83,9 @@ body {
 
 .search-button {
     font-weight: bolder;
-    background-color:#75C2F6;
+    background-color: #75C2F6;
     color: black;
     font-family: 'Saira Condensed', sans-serif;
-    margin-bottom: 5px;
 }
 
 .search-button:hover {
@@ -94,8 +96,8 @@ body {
 
 }
 
-.view-button{
-    color:#75C2F6;
+.view-button {
+    color: #75C2F6;
 }
 
 .delete-button {
@@ -147,4 +149,3 @@ body {
     height: 35px;
     width: 75px;
 }
-
