@@ -290,7 +290,7 @@ window.onscroll = function () {scrollFunction();};
 function scrollFunction() {
 if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
 
-document.getElementById("navbar").style.background = "#501e27";
+document.getElementById("navbar").style.background = "rgba(0, 38, 50,0.9)";
 } else {
 
 document.getElementById("navbar").style.background = "none";

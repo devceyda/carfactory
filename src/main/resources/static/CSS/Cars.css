@@ -5,29 +5,105 @@ body {
     background-size: cover;
 } */
 
+@import url('https://fonts.googleapis.com/css2?family=Macondo&display=swap');
 
 
 body {
-    background: url("deneme4.jpg");
-    background-size: 100%;
+    background: url("deneme10.jpg");
+    background-size: 140%;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    display: block;
+
 }
 
 .navbar {
     position: fixed;
     transition: 1s;
     font-family: 'Caveat', cursive;
-
 }
 
-.navbar-brand {
-    margin-top: 8px;
-    color: #79155B;
-    font-size: 45px;
-    font-family: 'Bad Script', cursive;
+.gif {
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 1;
+    width: 10%;
+    max-inline-size: 10%;
+    block-size: auto;
+}
+
+.logo {
+    float: right;
+    width: 4%;
+}
+
+/* .navbar-brand {
+    color: #7EFAFF;
+    font-size: 40px;
+    font-family: 'Macondo', cursive;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 500;
+    padding: 0;
+    -webkit-box-reflect: below -5px linear-gradient(transparent,rgba(233, 0, 100,0.2));
+    text-shadow: -0.5px -0.5px 0 #13ABC4, 0.5px 0.5px 0 #13ABC4, -0.5px 0.5px 0 #13ABC4, 0.5px 0.5px 0 #13ABC4;
+} */
+.deneme {
+    display: block;
+    color: #982176;
+    font-size: 50px;
+    cursor: pointer;
+    font-family: 'Macondo', cursive;
+    margin-left: 10px;
+    -webkit-box-reflect: below -40px linear-gradient(transparent,rgba(233, 0, 100,0.2));
+    
+}
+.deneme::before {
+    content: "Car Factory";
+    font-family: 'Macondo', cursive;
+    position: absolute;
+    color: transparent;
+    display: block;
+    background-image: repeating-linear-gradient(45deg,
+            transparent 0,
+            transparent 3.5px,
+            white 2px,
+            white 4px);
+    -webkit-background-clip: text;
+    top: 0px;
+    left: 0;
+    z-index: -1;
+    transition: 0.8s;
+    margin-left: 10px;
+}
+.deneme::after {
+    content: "Car Factory";
+    font-family: 'Macondo', cursive;
+    position: absolute;
+    display: block;
+    color: transparent;
+    background-image: repeating-linear-gradient(135deg,
+            transparent 0,
+            transparent 3.5px,
+            white 2px,
+            white 4px);
+    -webkit-background-clip: text;
+    top: 0px;
+    left: 0px;
+    transition: 0.8s;
+    margin-left: 10px;
+}
+
+.deneme:hover:before {
+    top: 10px;
+    left: 10px;
+}
+
+.deneme:hover:after {
+    top: -10px;
+    left: -10px;
 }
 
 .icon-bar {
@@ -39,12 +115,15 @@ body {
     font-family: 'Sansita Swashed', cursive;
     color: #fff;
     padding: 10px 20px;
+    display: block;
 }
+
 
 .nav li {
     padding: 10px;
     cursor: pointer;
     font-size: 18px;
+    display: block;
 }
 
 .nav li:after {
@@ -64,7 +143,7 @@ body {
 } */
 
 body::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: inset 0 0 6px black;
 
 }
 
@@ -74,8 +153,8 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-thumb {
 
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .5);
-    background: #501e27;
+    -webkit-box-shadow: inset 0 0 6px black;
+    background: black;
 }
 
 @media(max-width: 720px) {
@@ -84,7 +163,7 @@ body::-webkit-scrollbar-thumb {
     }
 
     .navbar-collapse {
-        background: #501e27;
+        background: black;
     }
 
 }
@@ -126,8 +205,9 @@ body::-webkit-scrollbar-thumb {
     font-family: 'Abel', sans-serif;
 } */
 
+
 .table-list {
-    margin-top: 50px;
+    margin-top: 100px;
     font-family: 'Saira Condensed', sans-serif;
     text-align: center;
 }
@@ -138,7 +218,7 @@ body::-webkit-scrollbar-thumb {
     /* background-color: rgba(241, 235, 243, 0.952) ; */
     color: black;
     font-weight: bold;
-    background-color: #FFE9D6;
+    background-color: white;
     opacity: 0.93;
 }
 
