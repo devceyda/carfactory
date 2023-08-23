@@ -10,21 +10,21 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.carfactory.carfactory.entity.Brand;
+import com.carfactory.carfactory.entity.Color;
 import com.carfactory.carfactory.repository.Repository;
 import com.carfactory.carfactory.service.BrandService;
 
+
 @Service
 public class BrandServiceImpl implements BrandService {
-
     private List<Brand> allBrands;
     private Brand brand;
     Repository repository = new Repository();
 
     @Override
     public List<Brand> getAllBrand() {
-
-        String query = "uspGetBrand";
         allBrands = new ArrayList<>();
+        String query = "uspGetBrand";
 
         try {
             Connection conn = repository.getConnection();
@@ -43,4 +43,5 @@ public class BrandServiceImpl implements BrandService {
         }
         return allBrands;
     }
+
 }

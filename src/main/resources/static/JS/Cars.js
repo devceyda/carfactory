@@ -43,6 +43,8 @@ $(document).ready(function () {
         $('#carTable').dataTable({
             searching: false,
             pageLength: 25,
+            order: [[4, 'desc']],
+
             "data": data,
             "columns": [
                 { data: "carID" },
@@ -99,9 +101,9 @@ $(document).ready(function () {
                 },
                 {
                     targets: [4],
-                    render: 
-                    $.fn.dataTable.render.number( '.', ',', 2,""," TL" )
-                    
+                    render:
+                        $.fn.dataTable.render.number('.', ',', 2, "", " TL")
+
 
 
                 }
@@ -265,7 +267,7 @@ function GetCarDetail(car) {
 
 function deleteCarByID(data) {
 
-    var result = confirm("Want to Delete "+ data.brand+" " + data.model +" ?");
+    var result = confirm("Want to Delete " + data.brand + " " + data.model + " ?");
     if (result) {
 
         console.log(data)
@@ -283,16 +285,4 @@ function deleteCarByID(data) {
     }
 
 
-}
-
-window.onscroll = function () {scrollFunction();};
-
-function scrollFunction() {
-if (document.body.scrollTop > 10 || document.documentElement.scrollTop > 10) {
-
-document.getElementById("navbar").style.background = "rgba(0, 38, 50,0.9)";
-} else {
-
-document.getElementById("navbar").style.background = "none";
-}
 }
