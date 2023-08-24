@@ -1,3 +1,13 @@
+function openSearchModal() {
+
+    var CarModal = new bootstrap.Modal(document.getElementById('MdlSearchCar'), {
+        keyboard: false
+    });
+
+
+    CarModal.show();
+
+}
 $('#filter-form').on('submit', function (event) {
 
     console.log(form.serialize());
@@ -43,11 +53,13 @@ $(document).ready(function () {
         $('#carTable').dataTable({
             searching: false,
             pageLength: 25,
-            order: [[4, 'desc']],
+            lengthChange: false,
+            order: [[5, 'desc']],
 
             "data": data,
             "columns": [
                 { data: "carID" },
+                { data: "brandLogo" },
                 { data: "brand" },
                 { data: "model" },
                 { data: "color" },
@@ -57,7 +69,7 @@ $(document).ready(function () {
             ],
 
             columnDefs: [
-
+                {"className": "dt-center", "targets": "_all"},
                 {
                     targets: 0,
                     render: function (data, type, full, meta) {
@@ -68,6 +80,17 @@ $(document).ready(function () {
                         class="fa-solid fa-lg fa-circle-chevron-right"></i>
                         `
                         return buttons;
+                    }
+                },
+                {
+                    targets: 1,
+                    render: function (data, type, full, meta) {
+                        orderable: false;
+                    
+                        return '<img style="text-align:center;" width=50px src="/BrandLogo/' + data +  '" alt=""/>';
+                        // image.src = "/BrandLogo/" + data;
+                        // document.getElementById("BrandLogo").src = "/BrandLogo/" + data;
+
                     }
                 },
                 {
@@ -90,7 +113,7 @@ $(document).ready(function () {
                     }
                 },
                 {
-                    targets: [5],
+                    targets: [6],
                     render: function (data, type, full, meta) {
                         if (data != null) {
                             var date = new Date(data);
@@ -100,7 +123,7 @@ $(document).ready(function () {
                     }
                 },
                 {
-                    targets: [4],
+                    targets: [5],
                     render:
                         $.fn.dataTable.render.number('.', ',', 2, "", " TL")
 
@@ -141,7 +164,14 @@ function UpdateCar(car) {
     document.getElementById("IsRefurbishedYes").disabled = false;
     document.getElementById("save-button").style.visibility = 'visible';
     //document.getElementById("save-button").addEventListener('click', save, false);
-    $('#MdlCar').modal();
+
+    var CarModal = new bootstrap.Modal(document.getElementById('MdlCar'), {
+        keyboard: false
+    });
+
+
+    CarModal.show();
+    // $('#MdlCar').modal();
 
     $('#update-form').on('submit', function (event) {
         var result = confirm("Want to Save?");
@@ -261,8 +291,13 @@ function GetCarDetail(car) {
         //$("#IsRefurbishedYes").checked = true;
     }
     //$("#brand").val(car.find(x => x.carID == 65).brand);
+    var CarModal = new bootstrap.Modal(document.getElementById('MdlCar'), {
+        keyboard: false
+    });
 
-    $('#MdlCar').modal();
+
+    CarModal.show();
+    //$('#MdlCar').modal();
 }
 
 function deleteCarByID(data) {

@@ -158,11 +158,12 @@ public class CarServiceImpl implements CarService {
     @Override
     public List<CarRich> searchCar(Car car) {
         allCars = new ArrayList<>();
-        query = "{call uspSearchCar(?,?,?,?,?,?,?,?,?)}";
+        query = "{call uspSearchCar(?,?,?,?,?,?,?,?,?,?)}";
         try {
             Connection conn = repository.getConnection();
             CallableStatement cb = conn.prepareCall(query);
             cb.setString("CarID", null);
+            cb.setString("BrandLogo", null);
             if (car.getColorID() == null) {
                 cb.setString("ColorID", null);
             } else {
@@ -225,6 +226,7 @@ public class CarServiceImpl implements CarService {
                 rCar.setReleaseDate(rs.getDate("ReleaseDate"));
                 rCar.setBrand(rs.getString("Brand"));
                 rCar.setColor(rs.getString("Color"));
+                 rCar.setBrandLogo(rs.getString("BrandLogo"));
 
                 allCars.add(rCar);
             }

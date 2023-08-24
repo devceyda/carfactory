@@ -34,8 +34,8 @@ public class BrandServiceImpl implements BrandService {
                 brand = new Brand();
                 brand.setBrandID(rs.getInt("BrandID"));
                 brand.setBrand(rs.getString("Brand"));
-                allBrands.add(brand);
-
+                brand.setBrandLogo(rs.getString("BrandLogo"));
+                allBrands.add(brand);   
             }
         } catch (SQLException e) {
 
