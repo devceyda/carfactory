@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=K2D&display=swap" rel="stylesheet">
 
 
     <!-- <script src="https://code.jquery.com/jquery-3.7.0.js" 
@@ -52,19 +55,19 @@
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header ">
                 <h5 class="modal-title text-center" id="modalHeader" value=""> Search Car</h5>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body text-center">
                 <form id="filter-form" action="/FilterCars" method="POST" name="filter-form">
                     <div class="form-group form-inline">
-                        <div class="row">
+                        <div class="row mb-4 text-center">
 
                             <label for="Brand" class="col-lg-4 ">Brand:</label>
-                            <select class="col-lg-8" id="searchByBrand" name="BrandID">
+                            <select class="col-lg-8 " id="searchByBrand" name="BrandID">
                                 <option text="Please Select"></option>
                                 <option th:each="brand: ${brands}" th:text="${brand.Brand}" th:value="${brand.BrandID}">
                                 </option>
@@ -73,7 +76,7 @@
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <div class="row">
+                        <div class="row mb-4">
 
                             <label for="Model" class="col-lg-4 ">Model:</label>
                             <input type="text" class="col-lg-8" id="searchByModel" name="Model" value="" />
@@ -81,7 +84,7 @@
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <div class="row">
+                        <div class="row mb-4">
 
                             <label for="Color" class="col-lg-4 ">Color:</label>
                             <select class="col-lg-8" id="searchByColor" name="ColorID">
@@ -93,7 +96,7 @@
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <div class="row">
+                        <div class="row mb-4">
 
                             <label for="Price" class="col-lg-4 ">Price:</label>
                             <input type="number" class="col-lg-8" id="searchByPrice" name="Price" />
@@ -101,7 +104,7 @@
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <div class="row">
+                        <div class="row mb-4">
 
                             <label for="gearType" class="col-lg-4 ">Gear Type:</label>
                             <select class="col-lg-8" id="searchByGearType" name="GearType">
@@ -114,7 +117,7 @@
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <div class="row">
+                        <div class="row mb-4">
 
                             <label for="fuelType" class="col-lg-4 ">Fuel Type:</label>
                             <select class="col-lg-8" id="searchByFuelType" name="FuelType">
@@ -128,7 +131,7 @@
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <div class="row">
+                        <div class="row mb-4">
 
                             <label for="ReleaseDate" class="col-lg-4">Release Date:</label>
                             <input type="date" class="col-lg-8" id="searchByReleaseDate" name="ReleaseDate" />
@@ -136,21 +139,131 @@
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <div class="row">
-
-                            <label for="IsRefurbished" class="col-lg-4">Car
-                                Refurbished:</label>
-                            <label style="margin-right:10px ;" for="yes">Yes</label>
-                            <input style="margin-right: 20px;" type="radio" value="1" id="searchByIsRefurbished"
-                                name="IsRefurbished" />
-                            <label style="margin-right:10px " for="no">No</label>
-                            <input type="radio" value="0" id="searchByIsRefurbished" name="IsRefurbished" />
-
+                        <div class="row mb-4">
+                            <div class="radio-btns">
+                                <label for="IsRefurbished" class="col-lg-4">Car
+                                    Refurbished:</label>
+                                <label for="yes">Yes</label>
+                                <input type="radio" value="1" id="searchByIsRefurbished" name="IsRefurbished" />
+                                <label for="no">No</label>
+                                <input type="radio" value="0" id="searchByIsRefurbished" name="IsRefurbished" />
+                            </div>
                         </div>
                     </div>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-primary close-button">Search</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+<!-- Modal -->
+<div class="modal fade" id="MdlAddCar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-center" id="modalHeader" value="">Add Car</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <form id="addCar-form" action="/AddCar" method="POST" name="addCar-form">
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="Brand" class="col-lg-4 ">Brand:</label>
+                            <select class="col-lg-8" id="addBrand" name="BrandID">
+                                <option text="Please Select"></option>
+                                <option th:each="brand: ${brands}" th:text="${brand.Brand}" th:value="${brand.BrandID}">
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="Model" class="col-lg-4 ">Model:</label>
+                            <input type="text" class="col-lg-8" id="addModel" name="Model" value="" />
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="Color" class="col-lg-4 ">Color:</label>
+                            <select class="col-lg-8" id="addColor" name="ColorID">
+                                <option text="Please Select"></option>
+                                <option th:each="color: ${colors}" th:text="${color.Color}" th:value="${color.ColorID}">
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="Price" class="col-lg-4 ">Price:</label>
+                            <input type="number" class="col-lg-8" id="addPrice" name="Price" />
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="gearType" class="col-lg-4 ">Gear Type:</label>
+                            <select class="col-lg-8" id="addGearType" name="GearType">
+                                <!--   <option value="0">select operator</option>-->
+                                <option text="Please Select"></option>
+                                <option th:value="O" th:text="Otomatic"></option>
+                                <option th:value="M" th:text="Manuel"></option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="fuelType" class="col-lg-4 ">Fuel Type:</label>
+                            <select class="col-lg-8" id="addFuelType" name="FuelType">
+                                <option text="Please Select"></option>
+                                <option th:value="F" th:text="Fuel"></option>
+                                <option th:value="D" th:text="Diesel"></option>
+                                <option th:value="H" th:text="Hybrid"></option>
+                                <option th:value="E" th:text="Electric"></option>
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+
+                            <label for="ReleaseDate" class="col-lg-4">Release Date:</label>
+                            <input type="date" class="col-lg-8" id="addReleaseDate" name="ReleaseDate" />
+
+                        </div>
+                    </div>
+                    <div class="form-group form-inline">
+                        <div class="row mb-4">
+                            <div class="radio-btns">
+                                <label for="IsRefurbished" class="col-lg-4">Car
+                                    Refurbished:</label>
+                                <label for="yes">Yes</label>
+                                <input type="radio" value="1" id="addIsRefurbished" name="IsRefurbished" />
+                                <label for="no">No</label>
+                                <input type="radio" value="0" id="addIsRefurbished" name="IsRefurbished" />
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn float-start" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary " id="add-button">Add</button>
             </div>
             </form>
         </div>
@@ -167,10 +280,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form id="update-form" action="/UpdateCar" method="POST" name="update-form">
+            <div class="modal-body text-center">
+                <form id="update-form" action="/UpdateCar" method="POST" name="update-form" class="text-center">
                     <div class="form-group form-inline">
-                        <div class="row">
+                        <div class="row mb-4">
 
                             <label for="Brand" class="col-lg-4 ">Brand:</label>
                             <select class="col-lg-8" id="Brand" name="BrandID" disabled="disabled">
@@ -182,7 +295,7 @@
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <div class="row">
+                        <div class="row mb-4">
 
                             <label for="Model" class="col-lg-4 ">Model:</label>
                             <input type="text" class="col-lg-8" id="Model" name="Model" value="" disabled="disabled" />
@@ -190,7 +303,7 @@
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <div class="row">
+                        <div class="row mb-4">
 
                             <label for="Color" class="col-lg-4">Color:</label>
                             <select class="col-lg-8" id="Color" name="ColorID" disabled="disabled">
@@ -202,7 +315,7 @@
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <div class="row">
+                        <div class="row mb-4">
 
                             <label for="Price" class="col-lg-4 ">Price:</label>
                             <input type="text" class="col-lg-8" id="Price" name="price" disabled="disabled" />
@@ -210,7 +323,7 @@
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <div class="row">
+                        <div class="row mb-4">
 
                             <label for="gearType" class="col-lg-4 ">Gear Type:</label>
                             <select class="col-lg-8" id="GearType" name="GearType" disabled="disabled">
@@ -223,7 +336,7 @@
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <div class="row">
+                        <div class="row mb-4">
 
                             <label for="fuelType" class="col-lg-4 ">Fuel Type:</label>
                             <select class="col-lg-8" id="FuelType" name="FuelType" disabled="disabled">
@@ -237,7 +350,7 @@
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <div class="row">
+                        <div class="row mb-4">
 
                             <label for="ReleaseDate" class="col-lg-4 ">Release Date:</label>
                             <input type="date" class=" col-lg-8" id="ReleaseDate" name="ReleaseDate"
@@ -246,22 +359,22 @@
                         </div>
                     </div>
                     <div class="form-group form-inline">
-                        <div class="row">
-
-                            <label for="IsRefurbished" class="col-lg-4">Car
-                                Refurbished:</label>
-                            <label for="yes">Yes</label>
-                            <input type="radio" value="1" id="IsRefurbishedYes" name="IsRefurbished"
-                                disabled="disabled" />
-                            <label for="no">No</label>
-                            <input type="radio" value="0" id="IsRefurbishedNo" name="IsRefurbished"
-                                disabled="disabled" />
-
+                        <div class="row mb-4">
+                            <div class="radio-btns">
+                                <label for="IsRefurbished" class="col-lg-4">Car
+                                    Refurbished:</label>
+                                <label for="yes">Yes</label>
+                                <input type="radio" value="1" id="IsRefurbishedYes" name="IsRefurbished"
+                                    disabled="disabled" />
+                                <label for="no">No</label>
+                                <input type="radio" value="0" id="IsRefurbishedNo" name="IsRefurbished"
+                                    disabled="disabled" />
+                            </div>
                         </div>
                     </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn close-button action-button" style="float: left;"
+                <button type="button" class="btn close-button action-button" style="float:right;"
                     data-bs-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary action-button" id="save-button">Save</button>
             </div>
@@ -342,8 +455,9 @@
 
     <div class="container ">
         <input id="HddnCarID" type="hidden" />
-        <a type="button" class="btn float-end search-button" id="search-button" style="margin-left: 7px;"
-            onclick="openSearchModal()" data-toggle="modal" data-target="#MdlSearchCar"><i
+        <a type="button" id="addCar-button" class="btn float-start" onclick="openAddCarModal()"><i
+                class="fa-solid fa-square-plus fa-xl"></i></a>
+        <a type="button" class="btn float-end search-button" id="search-button" onclick="openSearchModal()"><i
                 class="fa-brands fa-searchengin fa-xl"></i>
         </a>
         <table class="table table-dark table-hover table-responsive-xl text-center table-striped table-lg"

@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.carfactory.carfactory.entity.Brand;
 import com.carfactory.carfactory.entity.Car;
@@ -29,18 +31,18 @@ public class AddCarController {
         this.carService = carService;
     }
 
-    @GetMapping("/Cars/addCar")
-    public String addCarForm(Model model) {
-        CarRich car = new CarRich();
-        model.addAttribute("car", car);
-        return "AddCar";
-    }
+    // @GetMapping("/AddCar")
+    // public String addCarForm(Model model) {
+    //     CarRich car = new CarRich();
+    //     model.addAttribute("car", car);
+    //     return "AddCar";
+    // }
 
-    @PostMapping("/Cars/addCar")
-    public String addCar(@ModelAttribute("car") Car car) {
-        carService.addCar(car);
-        return "redirect:/Cars";
-    }
+    // @PostMapping("/AddCar")
+    // public String addCar(@ModelAttribute("car") Car car) {
+    //     carService.addCar(car);
+    //     return "redirect:/Cars";
+    // }
 
     @ModelAttribute("colors")
     public List<Color> getColors() {
@@ -50,5 +52,11 @@ public class AddCarController {
     @ModelAttribute("brands")
     public List<Brand> getBrands() {
         return brandService.getAllBrand();
+    }
+
+    @RequestMapping(value = "/AddCar", method = RequestMethod.POST)
+    public String addrCar(@ModelAttribute("Car") Car car) {
+       carService.addCar(car);
+        return "redirect:/Cars";
     }
 }

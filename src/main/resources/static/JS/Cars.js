@@ -8,7 +8,48 @@ function openSearchModal() {
     CarModal.show();
 
 }
+function openAddCarModal() {
+
+    var CarModal = new bootstrap.Modal(document.getElementById('MdlAddCar'), {
+        keyboard: false
+    });
+
+
+    CarModal.show();
+
+}
 $('#filter-form').on('submit', function (event) {
+
+    console.log(form.serialize());
+    var self = this;
+    var form = $(this);
+    var errorMsg = $('#errorMsg');
+
+    if (form.data('requestRunning')) {
+        return;
+    }
+
+    form.data('requestRunning', true);
+    event.preventDefault();
+
+    $.ajax({
+        url: form.attr("action"),
+        type: form.attr("method"),
+        data: form.serialize(),
+        success: function (result) {
+
+            console.log("ajax working");
+
+        },
+        complete: function (e) {
+            form.data('requestRunning', false);
+        }
+
+    });
+    clear();
+});
+
+$('#addCar-form').on('submit', function (event) {
 
     console.log(form.serialize());
     var self = this;
@@ -69,14 +110,16 @@ $(document).ready(function () {
             ],
 
             columnDefs: [
-                {"className": "dt-center", "targets": "_all"},
+                { "className": "dt-center", "targets": "_all" },
                 {
                     targets: 0,
                     render: function (data, type, full, meta) {
+                        orderable: false;
+
                         const test = JSON.stringify(full);
 
                         var buttons = `
-                        <a type="button" onclick='GetCarDetail(${test})' class="view-button"><i
+                        <a type="button" onclick='GetCarDetail(${test})' class="table-button" id="view-button"><i
                         class="fa-solid fa-lg fa-circle-chevron-right"></i>
                         `
                         return buttons;
@@ -86,29 +129,30 @@ $(document).ready(function () {
                     targets: 1,
                     render: function (data, type, full, meta) {
                         orderable: false;
-                    
-                        return '<img style="text-align:center;" width=50px src="/BrandLogo/' + data +  '" alt=""/>';
+
+                        return '<img style="text-align:center;" width=50px src="/BrandLogo/' + data + '" alt=""/>';
                         // image.src = "/BrandLogo/" + data;
                         // document.getElementById("BrandLogo").src = "/BrandLogo/" + data;
 
                     }
                 },
                 {
-                    targets: -1,
+                    targets: 7,
 
                     render: function (data, type, full, meta) {
-
+                        
                         const test = JSON.stringify(full);
-                        var buttons = `<a type="button"  
-                        class="btn action-button"
-                        style=" text-align:center; margin-right: 8px;" onclick='UpdateCar(${test})'>
+                        orderable: false;
+                        var buttons =
+                        `
+                        <a type="button" id="delete-button"
+                        class="btn table-button" style="text-align:center;" onclick='deleteCarByID(${test})'>
+                        <i class="fa-solid fa-trash-can fa-sm"></i></a>
+                        <a type="button"  
+                        class="btn table-button" id="update-button"
+                        style=" text-align:center;" onclick='UpdateCar(${test})'>
                         <i class="fa-solid fa-gear fa-sm" style=" text-align:center;"></i></a>
- 
-    
-                        <a type="button" 
-                        class="btn action-button delete-button" style="text-align:center;" onclick='deleteCarByID(${test})'>
-                        <i class="fa-solid fa-trash-can fa-sm" style=" text-align:center;"></i></a>
-    `;
+                        `;
                         return buttons;
                     }
                 },
