@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -21,6 +22,7 @@ public class CarServiceImpl implements CarService {
     private CarRich rCar;
     Repository repository = new Repository();
     private List<CarRich> allCars;
+    private HashMap<String, Integer> raports;
     String query;
 
     @Override
@@ -208,7 +210,6 @@ public class CarServiceImpl implements CarService {
 
             ResultSet rs = cb.executeQuery();
 
-
             while (rs.next()) {
                 rCar = new CarRich();
                 // car = new Car(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4),
@@ -226,7 +227,7 @@ public class CarServiceImpl implements CarService {
                 rCar.setReleaseDate(rs.getDate("ReleaseDate"));
                 rCar.setBrand(rs.getString("Brand"));
                 rCar.setColor(rs.getString("Color"));
-                 rCar.setBrandLogo(rs.getString("BrandLogo"));
+                rCar.setBrandLogo(rs.getString("BrandLogo"));
 
                 allCars.add(rCar);
             }
@@ -236,6 +237,69 @@ public class CarServiceImpl implements CarService {
         }
         return allCars;
 
+    }
+
+    @Override
+    public HashMap<String, Integer> getRaports() {
+        raports = new HashMap<>();
+        query = "uspGetRaport";
+        int numberOfCar = 0;
+        int numberOfOtomatic = 0;
+        int numberOfManuel = 0;
+        int numberOfFuel = 0;
+        int numberOfDiesel = 0;
+        int numberOfHybrid = 0;
+        int numberOfElectric = 0;
+
+        try {
+            Connection conn = repository.getConnection();
+            CallableStatement cb = conn.prepareCall(query);
+            ResultSet rs1 = cb.executeQuery();
+            while (rs1.next()) {
+                numberOfCar = rs1.getInt("NumberOfCar");
+            }
+            raports.put("NumberOfCars", numberOfCar);
+            cb.getMoreResults();
+            ResultSet rs2 = cb.getResultSet();
+            while (rs2.next()) {
+                numberOfOtomatic = rs2.getInt("NumberOfOtomatic");
+            }
+            raports.put("NumberOfOtomatic", numberOfOtomatic);
+            cb.getMoreResults();
+            ResultSet rs3 = cb.getResultSet();
+            while (rs3.next()) {
+                numberOfManuel = rs3.getInt("NumberOfManuel");
+            }
+            raports.put("NumberOfManuel", numberOfManuel);
+            cb.getMoreResults();
+            ResultSet rs4 = cb.getResultSet();
+            while (rs4.next()) {
+                numberOfFuel = rs4.getInt("NumberOfFuel");
+            }
+            raports.put("NumberOfFuel", numberOfFuel);
+            cb.getMoreResults();
+            ResultSet rs5 = cb.getResultSet();
+            while (rs5.next()) {
+                numberOfDiesel = rs5.getInt("NumberOfDiesel");
+            }
+            raports.put("NumberOfDiesel", numberOfDiesel);
+            cb.getMoreResults();
+            ResultSet rs6 = cb.getResultSet();
+            while (rs6.next()) {
+                numberOfHybrid = rs6.getInt("NumberOfHybrid");
+            }
+            raports.put("NumberOfHybrid", numberOfHybrid);
+            cb.getMoreResults();
+            ResultSet rs7 = cb.getResultSet();
+            while (rs7.next()) {
+                numberOfElectric = rs7.getInt("NumberOfElectric");
+            }
+            raports.put("NumberOfElectric", numberOfElectric);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return raports;
     }
 
 }

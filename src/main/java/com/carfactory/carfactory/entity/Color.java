@@ -4,10 +4,12 @@ public class Color {
 
     private int ColorID;
     private String Color;
+    private int NumberOfColor;
 
-    public Color(int colorID, String color) {
+    public Color(int colorID, String color, int numberOfColor) {
         ColorID = colorID;
         Color = color;
+        NumberOfColor = numberOfColor;
     }
 
     public Color() {
@@ -27,6 +29,14 @@ public class Color {
 
     public void setColor(String color) {
         Color = color;
+    }
+
+    public int getNumberOfColor() {
+        return NumberOfColor;
+    }
+
+    public void setNumberOfColor(int numberOfColor) {
+        NumberOfColor = numberOfColor;
     }
 
 }

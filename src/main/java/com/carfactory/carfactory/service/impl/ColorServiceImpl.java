@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -16,8 +17,10 @@ import com.carfactory.carfactory.service.ColorService;
 @Service
 public class ColorServiceImpl implements ColorService {
     private List<Color> allColors;
+    // private List<Color> numberOfColors;
     private Color color;
     Repository repository = new Repository();
+    private HashMap<String, Integer> numberOfColors;
 
     @Override
     public List<Color> getAllColor() {
@@ -40,6 +43,49 @@ public class ColorServiceImpl implements ColorService {
             e.printStackTrace();
         }
         return allColors;
+    }
+
+    @Override
+    public HashMap<String, Integer> getNumberOfColors() {
+        numberOfColors = new HashMap<>();
+        String query = "uspGetRaport";
+        try {
+            Connection conn = repository.getConnection();
+            CallableStatement cb = conn.prepareCall(query);
+            ResultSet rs1 = cb.executeQuery();
+
+            cb.getMoreResults();
+            ResultSet rs2 = cb.getResultSet();
+
+            cb.getMoreResults();
+            ResultSet rs3 = cb.getResultSet();
+
+            cb.getMoreResults();
+            ResultSet rs4 = cb.getResultSet();
+
+            cb.getMoreResults();
+            ResultSet rs5 = cb.getResultSet();
+
+            cb.getMoreResults();
+            ResultSet rs6 = cb.getResultSet();
+
+            cb.getMoreResults();
+            ResultSet rs7 = cb.getResultSet();
+
+            cb.getMoreResults();
+            ResultSet rs8 = cb.getResultSet();
+
+            while (rs8.next()) {
+                // color = new Color();
+                // color.setColor(rs8.getString("Color"));
+                // color.setNumberOfColor(rs8.getString("Color"));
+                numberOfColors.put(rs8.getString("Color"), rs8.getInt("NumberOfColor"));
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return numberOfColors;
     }
 
 }

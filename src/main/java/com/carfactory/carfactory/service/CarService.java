@@ -1,9 +1,11 @@
 package com.carfactory.carfactory.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import com.carfactory.carfactory.entity.Car;
 import com.carfactory.carfactory.entity.CarRich;
+
 
 public interface CarService {
 
@@ -19,5 +21,6 @@ public interface CarService {
 
     List<CarRich> searchCar(Car car);
 
-   
+    HashMap<String, Integer> getRaports();
+
 }

@@ -43,7 +43,7 @@ public class FactoryController {
         this.carService = carService;
     }
 
-    Car car = new CarRich(null, null, null, null, null, null, null, null, null, null, null,null);
+    Car car = new CarRich(null, null, null, null, null, null, null, null, null, null, null, null);
 
     @GetMapping("/Cars")
     public String listCars() {
