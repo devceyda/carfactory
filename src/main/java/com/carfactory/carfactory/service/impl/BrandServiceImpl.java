@@ -45,10 +45,10 @@ public class BrandServiceImpl implements BrandService {
         return allBrands;
     }
 
-    @Override
+     @Override
     public HashMap<String, Integer> getNumberOfBrands() {
         numberOfBrands = new HashMap<>();
-        String query = "uspGetRaport";
+        String query = "uspGetReport";
         try {
             Connection conn = repository.getConnection();
             CallableStatement cb = conn.prepareCall(query);
@@ -65,25 +65,12 @@ public class BrandServiceImpl implements BrandService {
 
             cb.getMoreResults();
             ResultSet rs5 = cb.getResultSet();
-
-            cb.getMoreResults();
-            ResultSet rs6 = cb.getResultSet();
-
-            cb.getMoreResults();
-            ResultSet rs7 = cb.getResultSet();
-
-            cb.getMoreResults();
-            ResultSet rs8 = cb.getResultSet();
-
-            cb.getMoreResults();
-            ResultSet rs9 = cb.getResultSet();
-
-            while (rs9.next()) {
+            while (rs5.next()) {
                 // brand = new Brand();
                 // brand.setBrand(rs9.getString("Brand"));
                 // brand.setNumberOfBrand(rs9.getInt("NumberOfBrand"));
                 // numberOfBrands.add(brand);
-                numberOfBrands.put(rs9.getString("Brand"), rs9.getInt("NumberOfBrand"));
+                numberOfBrands.put(rs5.getString("Brand"), rs5.getInt("NumberOfBrand"));
             }
 
         } catch (Exception e) {

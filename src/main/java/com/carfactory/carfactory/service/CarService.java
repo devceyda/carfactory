@@ -21,6 +21,6 @@ public interface CarService {
 
     List<CarRich> searchCar(Car car);
 
-    HashMap<String, Integer> getRaports();
+    HashMap<String, Integer> getReports();
 
 }

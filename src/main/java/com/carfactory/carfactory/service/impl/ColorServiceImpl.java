@@ -17,7 +17,6 @@ import com.carfactory.carfactory.service.ColorService;
 @Service
 public class ColorServiceImpl implements ColorService {
     private List<Color> allColors;
-    // private List<Color> numberOfColors;
     private Color color;
     Repository repository = new Repository();
     private HashMap<String, Integer> numberOfColors;
@@ -48,7 +47,7 @@ public class ColorServiceImpl implements ColorService {
     @Override
     public HashMap<String, Integer> getNumberOfColors() {
         numberOfColors = new HashMap<>();
-        String query = "uspGetRaport";
+        String query = "uspGetReport";
         try {
             Connection conn = repository.getConnection();
             CallableStatement cb = conn.prepareCall(query);
@@ -63,23 +62,11 @@ public class ColorServiceImpl implements ColorService {
             cb.getMoreResults();
             ResultSet rs4 = cb.getResultSet();
 
-            cb.getMoreResults();
-            ResultSet rs5 = cb.getResultSet();
-
-            cb.getMoreResults();
-            ResultSet rs6 = cb.getResultSet();
-
-            cb.getMoreResults();
-            ResultSet rs7 = cb.getResultSet();
-
-            cb.getMoreResults();
-            ResultSet rs8 = cb.getResultSet();
-
-            while (rs8.next()) {
+            while (rs4.next()) {
                 // color = new Color();
                 // color.setColor(rs8.getString("Color"));
                 // color.setNumberOfColor(rs8.getString("Color"));
-                numberOfColors.put(rs8.getString("Color"), rs8.getInt("NumberOfColor"));
+                numberOfColors.put(rs4.getString("Color"), rs4.getInt("NumberOfColor"));
             }
 
         } catch (Exception e) {

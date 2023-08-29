@@ -5,13 +5,11 @@ public class Brand {
     private int BrandID;
     private String Brand;
     private String BrandLogo;
-    private int NumberOfBrand;
 
-    public Brand(int brandID, String brand, String brandLogo, int numberOfBrand) {
+    public Brand(int brandID, String brand, String brandLogo) {
         BrandID = brandID;
         Brand = brand;
         BrandLogo = brandLogo;
-        NumberOfBrand = numberOfBrand;
     }
 
     public Brand() {
@@ -39,14 +37,6 @@ public class Brand {
 
     public void setBrand(String brand) {
         Brand = brand;
-    }
-
-    public int getNumberOfBrand() {
-        return NumberOfBrand;
-    }
-
-    public void setNumberOfBrand(int numberOfBrand) {
-        NumberOfBrand = numberOfBrand;
     }
 
 }

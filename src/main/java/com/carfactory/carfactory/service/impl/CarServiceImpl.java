@@ -22,7 +22,7 @@ public class CarServiceImpl implements CarService {
     private CarRich rCar;
     Repository repository = new Repository();
     private List<CarRich> allCars;
-    private HashMap<String, Integer> raports;
+    private HashMap<String, Integer> reports;
     String query;
 
     @Override
@@ -240,9 +240,9 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public HashMap<String, Integer> getRaports() {
-        raports = new HashMap<>();
-        query = "uspGetRaport";
+    public HashMap<String, Integer> getReports() {
+        reports = new HashMap<>();
+        query = "uspGetReport";
         int numberOfCar = 0;
         int numberOfOtomatic = 0;
         int numberOfManuel = 0;
@@ -258,48 +258,40 @@ public class CarServiceImpl implements CarService {
             while (rs1.next()) {
                 numberOfCar = rs1.getInt("NumberOfCar");
             }
-            raports.put("NumberOfCars", numberOfCar);
+            reports.put("NumberOfCars", numberOfCar);
             cb.getMoreResults();
             ResultSet rs2 = cb.getResultSet();
             while (rs2.next()) {
-                numberOfOtomatic = rs2.getInt("NumberOfOtomatic");
+                reports.put(rs2.getString("GearType"), rs2.getInt("NumberOfGear"));
+               // numberOfOtomatic = rs2.getInt("NumberOfOtomatic");
             }
-            raports.put("NumberOfOtomatic", numberOfOtomatic);
+            //raports.put("NumberOfOtomatic", numberOfOtomatic);
             cb.getMoreResults();
             ResultSet rs3 = cb.getResultSet();
             while (rs3.next()) {
-                numberOfManuel = rs3.getInt("NumberOfManuel");
+               reports.put(rs3.getString("FuelType"), rs3.getInt("NumberOfFuel"));
             }
-            raports.put("NumberOfManuel", numberOfManuel);
-            cb.getMoreResults();
-            ResultSet rs4 = cb.getResultSet();
-            while (rs4.next()) {
-                numberOfFuel = rs4.getInt("NumberOfFuel");
-            }
-            raports.put("NumberOfFuel", numberOfFuel);
-            cb.getMoreResults();
-            ResultSet rs5 = cb.getResultSet();
-            while (rs5.next()) {
-                numberOfDiesel = rs5.getInt("NumberOfDiesel");
-            }
-            raports.put("NumberOfDiesel", numberOfDiesel);
-            cb.getMoreResults();
-            ResultSet rs6 = cb.getResultSet();
-            while (rs6.next()) {
-                numberOfHybrid = rs6.getInt("NumberOfHybrid");
-            }
-            raports.put("NumberOfHybrid", numberOfHybrid);
-            cb.getMoreResults();
-            ResultSet rs7 = cb.getResultSet();
-            while (rs7.next()) {
-                numberOfElectric = rs7.getInt("NumberOfElectric");
-            }
-            raports.put("NumberOfElectric", numberOfElectric);
+           
+            // cb.getMoreResults();
+            // ResultSet rs4 = cb.getResultSet();
+            // while (rs4.next()) {
+
+            //         reports.put(rs4.getString("Color"), rs4.getInt("NumberOfColor"));
+                
+            // }
+           
+            // cb.getMoreResults();
+            // ResultSet rs5 = cb.getResultSet();
+            // while (rs5.next()) {
+            //         reports.put(rs5.getString("Brand"), rs5.getInt("NumberOfBrand"));
+                
+            // }
+           
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return raports;
+        return reports;
     }
 
 }

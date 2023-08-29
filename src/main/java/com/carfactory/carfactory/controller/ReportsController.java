@@ -17,7 +17,7 @@ import com.carfactory.carfactory.service.CarService;
 import com.carfactory.carfactory.service.ColorService;
 
 @Controller
-public class RaportsController {
+public class ReportsController {
 
     private BrandService brandService;
     private ColorService colorService;
@@ -25,32 +25,32 @@ public class RaportsController {
 
   
 
-    public RaportsController(BrandService brandService, ColorService colorService, CarService carService) {
+    public ReportsController(BrandService brandService, ColorService colorService, CarService carService) {
         this.brandService = brandService;
         this.colorService = colorService;
         this.carService = carService;
     }
 
-    @GetMapping("/Raport")
+    @GetMapping("/Report")
     public String getRaports() {
-        return "Raport";
+        return "Report";
     }
 
     @RequestMapping(value = "/CarRaport", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
     @ResponseBody
     public HashMap<String, Integer> getCarData() {
 
-      return carService.getRaports();
+      return carService.getReports();
     }
 
-    @RequestMapping(value = "/ColorRaport", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+    @RequestMapping(value = "/ColorReport", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
     @ResponseBody
     public HashMap<String, Integer> getColorData() {
 
       return colorService.getNumberOfColors();
     }
 
-    @RequestMapping(value = "/BrandRaport", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+    @RequestMapping(value = "/BrandReport", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
     @ResponseBody
     public HashMap<String, Integer> getBrandData() {
 

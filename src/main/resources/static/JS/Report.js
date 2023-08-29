@@ -9,35 +9,34 @@ $(document).ready(function () {
         dataType: 'json'
     }).done(function (data) {
 
-
         console.log(data);
         gearChart.data = [{
 
             "gearType": "Otomatic Gear",
-            "data": data.NumberOfOtomatic,
+            "data": data.O,
             "color": am4core.color("#352F44")
         }, {
             "gearType": "Manuel Gear",
-            "data": data.NumberOfManuel,
+            "data": data.M,
             "color": am4core.color("#B9B4C7")
 
         }]
         fuelChart.data = [{
 
             "fuelType": "Fuel",
-            "data": data.NumberOfFuel,
+            "data": data.F,
             "color": am4core.color("#512B81")
         }, {
             "fuelType": "Diesel",
-            "data": data.NumberOfDiesel,
+            "data": data.D,
             "color": am4core.color("#9F91CC")
         }, {
             "fuelType": "Hybrid",
-            "data": data.NumberOfHybrid,
+            "data": data.H,
             "color": am4core.color("#A084E8")
         }, {
             "fuelType": "Electric",
-            "data": data.NumberOfElectric,
+            "data": data.E,
             "color": am4core.color("#974EC3")
         }]
 
@@ -88,7 +87,7 @@ $(document).ready(function () {
     var colorData = [];
 
     $.ajax({
-        url: "/ColorRaport",
+        url: "/ColorReport",
         method: "GET",
         contentType: 'application/json',
         dataType: 'json'
@@ -147,7 +146,7 @@ $(document).ready(function () {
     var brandData = [];
 
     $.ajax({
-        url: "/BrandRaport",
+        url: "/BrandReport",
         method: "GET",
         contentType: 'application/json',
         dataType: 'json'
