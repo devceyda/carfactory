@@ -11,7 +11,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.carfactory.carfactory.entity.Brand;
-import com.carfactory.carfactory.entity.Color;
 import com.carfactory.carfactory.repository.Repository;
 import com.carfactory.carfactory.service.BrandService;
 

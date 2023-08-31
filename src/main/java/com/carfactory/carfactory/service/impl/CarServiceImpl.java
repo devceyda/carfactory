@@ -244,12 +244,12 @@ public class CarServiceImpl implements CarService {
         reports = new HashMap<>();
         query = "uspGetReport";
         int numberOfCar = 0;
-        int numberOfOtomatic = 0;
-        int numberOfManuel = 0;
-        int numberOfFuel = 0;
-        int numberOfDiesel = 0;
-        int numberOfHybrid = 0;
-        int numberOfElectric = 0;
+        // int numberOfOtomatic = 0;
+        // int numberOfManuel = 0;
+        // int numberOfFuel = 0;
+        // int numberOfDiesel = 0;
+        // int numberOfHybrid = 0;
+        // int numberOfElectric = 0;
 
         try {
             Connection conn = repository.getConnection();
