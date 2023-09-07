@@ -26,7 +26,7 @@ public class TeamController {
         return "Team";
     }
 
-    @RequestMapping(value = "/Team", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
+    @RequestMapping(value = "/TeamMembers", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = "application/json")
     @ResponseBody
     public List<Team> getTeam() {
         return teamService.getTeam();
