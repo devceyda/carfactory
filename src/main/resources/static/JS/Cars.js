@@ -140,11 +140,11 @@ $(document).ready(function () {
                     targets: 7,
 
                     render: function (data, type, full, meta) {
-                        
+
                         const test = JSON.stringify(full);
                         orderable: false;
                         var buttons =
-                        `
+                            `
                         <a type="button" id="delete-button"
                         class="btn table-button" style="text-align:center;" onclick='deleteCarByID(${test})'>
                         <i class="fa-solid fa-trash-can fa-sm"></i></a>
@@ -242,7 +242,7 @@ function UpdateCar(car) {
 
                 success: function (result) {
 
-                    console.log("ajax working");
+                    // console.log(result);
                     window.location.reload();
 
                 },
