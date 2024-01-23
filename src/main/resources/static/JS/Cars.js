@@ -49,6 +49,7 @@ $('#filter-form').on('submit', function (event) {
     clear();
 });
 
+
 $('#addCar-form').on('submit', function (event) {
 
     console.log(form.serialize());

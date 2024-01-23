@@ -15,6 +15,10 @@ public class Brand {
     public Brand() {
     }
 
+    public Brand(String brand) {
+        Brand = brand;
+    }
+
     public int getBrandID() {
         return BrandID;
     }
