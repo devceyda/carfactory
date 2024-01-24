@@ -87,7 +87,6 @@ public class FactoryController {
         existingCar.setIsRefurbished(car.getIsRefurbished());
         existingCar.setReleaseDate(car.getReleaseDate());
 
-        // save updated student object
         carService.updateCar(existingCar);
         return "/Cars";
     }
